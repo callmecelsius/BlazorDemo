@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="API/API.csproj" />
+  <Project Path="Application/Application.csproj" />
+  <Project Path="BlazorSsr/BlazorSsr.csproj" />
+  <Project Path="BlazorWasm/BlazorWasm.csproj" />
+  <Project Path="Domain/Domain.csproj" />
+  <Project Path="Persistence/Persistence.csproj" />
+</Solution>
