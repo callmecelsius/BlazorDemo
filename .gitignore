@@ -12,6 +12,9 @@
 obj/
 **/obj/
 *obj/
+bin/
+**/bin/
+*bin/
 **/obj/Debug/*.props
 *.user
 *.suo
@@ -279,3 +282,7 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+*.dll
+*.exe*
+*BuildHost-netcore*
+*CourseAssets*

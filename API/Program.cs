@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Persistence; 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,14 +7,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
-	opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnecitonString"));
+	opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
 
 
 var app = builder.Build();
 app.MapControllers();
+using var scope = app.Services.CreateScope();
+
+var services = scope.ServiceProvider;
+
+try
+{
+	var context = services.GetRequiredService<AppDbContext>();
+	await context.Database.MigrateAsync();
+	await DbInit.SeedData(context);
+}
+catch (Exception ex)
+{
+	var logger = services.GetRequiredService<ILogger<Program>>();
+	logger.LogError(ex, "An error occured during migration.");
+	throw;
+}
+
 app.Run();
-// Boilerplate 
+
+#region Boilerplate 
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // builder.Services.AddOpenApi();
@@ -53,3 +73,5 @@ app.Run();
 // {
 //     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 // }
+
+#endregion
