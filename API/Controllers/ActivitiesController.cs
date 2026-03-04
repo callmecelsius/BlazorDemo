@@ -1,5 +1,6 @@
 using System;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -7,12 +8,12 @@ using Persistence;
 namespace API.Controllers
 {
 	[ApiController]
-	public class ActivitiesController(AppDbContext context) : BaseApiController
+	public class ActivitiesController(AppDbContext context, IMediator mediator) : BaseApiController
 	{
 		[HttpGet]
 		public async Task<ActionResult<List<Activity>>> GetActivities()
 		{
-			return await context.Activities.ToListAsync();
+			return await mediator.Send(new GetActivityList.Query)
 		}
 
 		[HttpGet("{id}")]
