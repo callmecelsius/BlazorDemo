@@ -13,12 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 
 builder.Services.AddCors();
-builder.Services.AddMediatR(x =>
-{
-	x.RegisterServicesFromAssemblyContaining<GetActivityList>();
-});
-
-builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+builder.Services.AddMediatR(x =>{x.RegisterServicesFromAssemblyContaining<GetActivityList>();});
+builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfiles()));
 
 var app = builder.Build();
 
