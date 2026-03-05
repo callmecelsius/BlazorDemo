@@ -286,5 +286,3 @@ _Pvt_Extensions
 *.exe*
 *BuildHost-netcore*
 *CourseAssets*
-API/Reactivities.db-shm
-API/Reactivities.db-wal
