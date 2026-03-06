@@ -1,25 +1,23 @@
-import { List,  ListItem, ListItemText, Typography } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Box, Container, CssBaseline } from "@mui/material";
+import NavBar from "./NavBar";
+import { Outlet, ScrollRestoration, useLocation } from "react-router";
+import HomePage from "../../features/home/HomePage";
 
 function App() {
-	const [activities, setActivities] = useState<Activity[]>([]);
-	useEffect(() => {
-		axios.get<Activity[]>('http://localhost:5279/api/activities').then(response => setActivities(response.data))
-
-		return () => {}
-	}, [])
+	const location = useLocation();
 	return (
-		<>
-			<Typography variant="h3" className="app">Reactivities</Typography>
-			<List>
-				{activities.map(activity => (
-					<ListItem key={activity.id}>
-						<ListItemText>{activity.title}</ListItemText>
-					</ListItem>
-				))}
-			</List>
-		</>
+		<Box sx={{ bgcolor: '#eeeeee', minHeight: '100vh' }}>
+			<ScrollRestoration />
+			<CssBaseline />
+			{location.pathname === '/' ? <HomePage /> : (
+				<>
+					<NavBar />
+					<Container maxWidth='xl' sx={{ pt: 14 }}>
+						<Outlet />
+					</Container>
+				</>
+			)}
+		</Box>
 	)
 }
 
