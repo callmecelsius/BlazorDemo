@@ -1,0 +1,63 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "API",
+			"type": "coreclr",
+			"request": "launch",
+			"program": "${workspaceFolder}/API/bin/Debug/net10.0/API.dll",
+			"cwd": "${workspaceFolder}/API",
+			"preLaunchTask": "build API"
+		},
+		{
+			"name": "BlazorSsr",
+			"type": "coreclr",
+			"request": "launch",
+			"program": "${workspaceFolder}/BlazorSsr/bin/Debug/net10.0/BlazorSsr.dll",
+			"cwd": "${workspaceFolder}/BlazorSsr",
+			"preLaunchTask": "build BlazorSsr"
+		},
+		{
+			"name": "BlazorWasm",
+			"type": "coreclr",
+			"request": "launch",
+			"program": "${workspaceFolder}/BlazorWasm/bin/Debug/net10.0/BlazorWasm.dll",
+			"cwd": "${workspaceFolder}/BlazorWasm",
+			"preLaunchTask": "build BlazorWasm"
+		},
+		{
+			"name": "React",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}/React",
+			"runtimeExecutable": "npm",
+			"runtimeArgs": [
+				"run",
+				"dev"
+			]
+	}
+	],
+	"compounds": [
+		{
+			"name": "API + BlazorWasm",
+			"configurations": [
+				"API",
+				"BlazorWasm"
+			]
+		},
+		{
+			"name": "API + BlazorSsr",
+			"configurations": [
+				"API",
+				"BlazorSsr"
+			]
+		},
+		{
+			"name": "API + React",
+			"configurations": [
+				"API",
+				"React"
+			]
+		}
+	]
+}

@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build API",
+			"command": "dotnet build API/API.csproj",
+			"type": "shell",
+			"group": "build",
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "build BlazorSsr",
+			"command": "dotnet build BlazorSsr/BlazorSsr.csproj",
+			"type": "shell",
+			"group": "build",
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "build BlazorWasm",
+			"command": "dotnet build BlazorWasm/BlazorWasm.csproj",
+			"type": "shell",
+			"group": "build",
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "Open React in Browser",
+			"type": "shell",
+			"command": "open http://localhost:3000",
+			"problemMatcher": []
+		}
+	]
+}

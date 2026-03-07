@@ -8,7 +8,6 @@
 [Ll]og/
 [Ll]ogs/
 .vs/
-.vscode/
 obj/
 **/obj/
 *obj/
